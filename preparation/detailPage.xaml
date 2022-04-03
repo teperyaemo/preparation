@@ -1,0 +1,37 @@
+﻿<Page x:Class="preparation.detailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:preparation"
+      mc:Ignorable="d" 
+      Title="detailPage" MinHeight="374" MinWidth="592"
+      IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="DetailDG" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="auto"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Модель}" Width="auto"/>
+                <DataGridTextColumn Header="ГОСТ" Binding="{Binding ГОСТ}" Width="auto"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Категория.Название}" Width="auto"/>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="EditBtn" Content="Редактировать" Click="EditBtn_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <Button Content="Добавить" Name="AddBtn" Width="140" Click="AddBtn_Click"/>
+        <Button Content="Удалить" Name="DeleteBtn" Width="140" Click="DeleteBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

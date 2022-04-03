@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище rusmetModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Деталь">
+          <Key>
+            <PropertyRef Name="Id детали" />
+          </Key>
+          <Property Name="Id детали" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id категории" Type="int" />
+          <Property Name="Название" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Модель" Type="nvarchar" MaxLength="20" />
+          <Property Name="ГОСТ" Type="nvarchar" MaxLength="20" />
+          <Property Name="Номер чертежа" Type="nvarchar" MaxLength="20" />
+          <Property Name="Описание" Type="nvarchar(max)" />
+          <Property Name="Видимость" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Журнал изменений">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id внешнего объекта" Type="int" Nullable="false" />
+          <Property Name="Операция" Type="nvarchar" MaxLength="200" />
+          <Property Name="Дата" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Категория">
+          <Key>
+            <PropertyRef Name="Id категории" />
+          </Key>
+          <Property Name="Id категории" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Фотография">
+          <Key>
+            <PropertyRef Name="Id фотографии" />
+          </Key>
+          <Property Name="Id фотографии" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id детали" Type="int" />
+          <Property Name="Ссылка" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Характеристика детали">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id детали" Type="int" Nullable="false" />
+          <Property Name="Id характеристики" Type="int" Nullable="false" />
+          <Property Name="Значение" Type="float" />
+          <Property Name="Ед. измерения" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Характеристики">
+          <Key>
+            <PropertyRef Name="Id характеристики" />
+          </Key>
+          <Property Name="Id характеристики" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Деталь_Категория">
+          <End Role="Категория" Type="Self.Категория" Multiplicity="0..1" />
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория">
+              <PropertyRef Name="Id категории" />
+            </Principal>
+            <Dependent Role="Деталь">
+              <PropertyRef Name="Id категории" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фотография_Деталь">
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="0..1" />
+          <End Role="Фотография" Type="Self.Фотография" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Деталь">
+              <PropertyRef Name="Id детали" />
+            </Principal>
+            <Dependent Role="Фотография">
+              <PropertyRef Name="Id детали" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Характеристика детали_Деталь">
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="1" />
+          <End Role="Характеристика детали" Type="Self.Характеристика детали" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Деталь">
+              <PropertyRef Name="Id детали" />
+            </Principal>
+            <Dependent Role="Характеристика детали">
+              <PropertyRef Name="Id детали" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Характеристика детали_Характеристики">
+          <End Role="Характеристики" Type="Self.Характеристики" Multiplicity="1" />
+          <End Role="Характеристика детали" Type="Self.Характеристика детали" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Характеристики">
+              <PropertyRef Name="Id характеристики" />
+            </Principal>
+            <Dependent Role="Характеристика детали">
+              <PropertyRef Name="Id характеристики" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище rusmetModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Деталь" EntityType="Self.Деталь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Журнал изменений" EntityType="Self.Журнал изменений" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Категория" EntityType="Self.Категория" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Фотография" EntityType="Self.Фотография" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Характеристика детали" EntityType="Self.Характеристика детали" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Характеристики" EntityType="Self.Характеристики" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Деталь_Категория" Association="Self.FK_Деталь_Категория">
+            <End Role="Категория" EntitySet="Категория" />
+            <End Role="Деталь" EntitySet="Деталь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фотография_Деталь" Association="Self.FK_Фотография_Деталь">
+            <End Role="Деталь" EntitySet="Деталь" />
+            <End Role="Фотография" EntitySet="Фотография" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Характеристика детали_Деталь" Association="Self.FK_Характеристика детали_Деталь">
+            <End Role="Деталь" EntitySet="Деталь" />
+            <End Role="Характеристика детали" EntitySet="Характеристика детали" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Характеристика детали_Характеристики" Association="Self.FK_Характеристика детали_Характеристики">
+            <End Role="Характеристики" EntitySet="Характеристики" />
+            <End Role="Характеристика детали" EntitySet="Характеристика детали" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rusmetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Деталь">
+          <Key>
+            <PropertyRef Name="Id_детали" />
+          </Key>
+          <Property Name="Id_детали" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_категории" Type="Int32" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Модель" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ГОСТ" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_чертежа" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Видимость" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Категория" Relationship="Self.FK_Деталь_Категория" FromRole="Деталь" ToRole="Категория" />
+          <NavigationProperty Name="Фотография" Relationship="Self.FK_Фотография_Деталь" FromRole="Деталь" ToRole="Фотография" />
+          <NavigationProperty Name="Характеристика_детали" Relationship="Self.FK_Характеристика_детали_Деталь" FromRole="Деталь" ToRole="Характеристика_детали" />
+        </EntityType>
+        <EntityType Name="Журнал_изменений">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_внешнего_объекта" Type="Int32" Nullable="false" />
+          <Property Name="Операция" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Категория">
+          <Key>
+            <PropertyRef Name="Id_категории" />
+          </Key>
+          <Property Name="Id_категории" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Деталь" Relationship="Self.FK_Деталь_Категория" FromRole="Категория" ToRole="Деталь" />
+        </EntityType>
+        <EntityType Name="Фотография">
+          <Key>
+            <PropertyRef Name="Id_фотографии" />
+          </Key>
+          <Property Name="Id_фотографии" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_детали" Type="Int32" />
+          <Property Name="Ссылка" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Деталь" Relationship="Self.FK_Фотография_Деталь" FromRole="Фотография" ToRole="Деталь" />
+        </EntityType>
+        <EntityType Name="Характеристика_детали">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_детали" Type="Int32" Nullable="false" />
+          <Property Name="Id_характеристики" Type="Int32" Nullable="false" />
+          <Property Name="Значение" Type="Double" />
+          <Property Name="Ед__измерения" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Деталь" Relationship="Self.FK_Характеристика_детали_Деталь" FromRole="Характеристика_детали" ToRole="Деталь" />
+          <NavigationProperty Name="Характеристики" Relationship="Self.FK_Характеристика_детали_Характеристики" FromRole="Характеристика_детали" ToRole="Характеристики" />
+        </EntityType>
+        <EntityType Name="Характеристики">
+          <Key>
+            <PropertyRef Name="Id_характеристики" />
+          </Key>
+          <Property Name="Id_характеристики" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Характеристика_детали" Relationship="Self.FK_Характеристика_детали_Характеристики" FromRole="Характеристики" ToRole="Характеристика_детали" />
+        </EntityType>
+        <Association Name="FK_Деталь_Категория">
+          <End Role="Категория" Type="Self.Категория" Multiplicity="0..1" />
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория">
+              <PropertyRef Name="Id_категории" />
+            </Principal>
+            <Dependent Role="Деталь">
+              <PropertyRef Name="Id_категории" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фотография_Деталь">
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="0..1" />
+          <End Role="Фотография" Type="Self.Фотография" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Деталь">
+              <PropertyRef Name="Id_детали" />
+            </Principal>
+            <Dependent Role="Фотография">
+              <PropertyRef Name="Id_детали" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Характеристика_детали_Деталь">
+          <End Role="Деталь" Type="Self.Деталь" Multiplicity="1" />
+          <End Role="Характеристика_детали" Type="Self.Характеристика_детали" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Деталь">
+              <PropertyRef Name="Id_детали" />
+            </Principal>
+            <Dependent Role="Характеристика_детали">
+              <PropertyRef Name="Id_детали" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Характеристика_детали_Характеристики">
+          <End Role="Характеристики" Type="Self.Характеристики" Multiplicity="1" />
+          <End Role="Характеристика_детали" Type="Self.Характеристика_детали" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Характеристики">
+              <PropertyRef Name="Id_характеристики" />
+            </Principal>
+            <Dependent Role="Характеристика_детали">
+              <PropertyRef Name="Id_характеристики" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="rusmetEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Деталь" EntityType="Self.Деталь" />
+          <EntitySet Name="Журнал_изменений" EntityType="Self.Журнал_изменений" />
+          <EntitySet Name="Категория" EntityType="Self.Категория" />
+          <EntitySet Name="Фотография" EntityType="Self.Фотография" />
+          <EntitySet Name="Характеристика_детали" EntityType="Self.Характеристика_детали" />
+          <EntitySet Name="Характеристики" EntityType="Self.Характеристики" />
+          <AssociationSet Name="FK_Деталь_Категория" Association="Self.FK_Деталь_Категория">
+            <End Role="Категория" EntitySet="Категория" />
+            <End Role="Деталь" EntitySet="Деталь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фотография_Деталь" Association="Self.FK_Фотография_Деталь">
+            <End Role="Деталь" EntitySet="Деталь" />
+            <End Role="Фотография" EntitySet="Фотография" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Характеристика_детали_Деталь" Association="Self.FK_Характеристика_детали_Деталь">
+            <End Role="Деталь" EntitySet="Деталь" />
+            <End Role="Характеристика_детали" EntitySet="Характеристика_детали" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Характеристика_детали_Характеристики" Association="Self.FK_Характеристика_детали_Характеристики">
+            <End Role="Характеристики" EntitySet="Характеристики" />
+            <End Role="Характеристика_детали" EntitySet="Характеристика_детали" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище rusmetModelContainer" CdmEntityContainer="rusmetEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="rusmetModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Деталь">
+            <EntityTypeMapping TypeName="rusmetModel.Деталь">
+              <MappingFragment StoreEntitySet="Деталь">
+                <ScalarProperty Name="Id_детали" ColumnName="Id детали" />
+                <ScalarProperty Name="Id_категории" ColumnName="Id категории" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Модель" ColumnName="Модель" />
+                <ScalarProperty Name="ГОСТ" ColumnName="ГОСТ" />
+                <ScalarProperty Name="Номер_чертежа" ColumnName="Номер чертежа" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Видимость" ColumnName="Видимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Журнал_изменений">
+            <EntityTypeMapping TypeName="rusmetModel.Журнал_изменений">
+              <MappingFragment StoreEntitySet="Журнал изменений">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_внешнего_объекта" ColumnName="Id внешнего объекта" />
+                <ScalarProperty Name="Операция" ColumnName="Операция" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Категория">
+            <EntityTypeMapping TypeName="rusmetModel.Категория">
+              <MappingFragment StoreEntitySet="Категория">
+                <ScalarProperty Name="Id_категории" ColumnName="Id категории" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Фотография">
+            <EntityTypeMapping TypeName="rusmetModel.Фотография">
+              <MappingFragment StoreEntitySet="Фотография">
+                <ScalarProperty Name="Id_фотографии" ColumnName="Id фотографии" />
+                <ScalarProperty Name="Id_детали" ColumnName="Id детали" />
+                <ScalarProperty Name="Ссылка" ColumnName="Ссылка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Характеристика_детали">
+            <EntityTypeMapping TypeName="rusmetModel.Характеристика_детали">
+              <MappingFragment StoreEntitySet="Характеристика детали">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_детали" ColumnName="Id детали" />
+                <ScalarProperty Name="Id_характеристики" ColumnName="Id характеристики" />
+                <ScalarProperty Name="Значение" ColumnName="Значение" />
+                <ScalarProperty Name="Ед__измерения" ColumnName="Ед. измерения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Характеристики">
+            <EntityTypeMapping TypeName="rusmetModel.Характеристики">
+              <MappingFragment StoreEntitySet="Характеристики">
+                <ScalarProperty Name="Id_характеристики" ColumnName="Id характеристики" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
