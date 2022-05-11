@@ -9,28 +9,44 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="95"/>
             <RowDefinition/>
-            <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-        <DataGrid Name="DetailDG" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="auto"/>
-                <DataGridTextColumn Header="Модель" Binding="{Binding Модель}" Width="auto"/>
-                <DataGridTextColumn Header="ГОСТ" Binding="{Binding ГОСТ}" Width="auto"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding Категория.Название}" Width="auto"/>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="EditBtn" Content="Редактировать" Click="EditBtn_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+        <ListView Grid.Row="1" Name="LViewAgents">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Логотип">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>Resources\picture.png</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <TextBlock Grid.Column="1" x:Name="TBType" Text="{Binding Тип}" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Column="1" x:Name="TBNAme" Text="{Binding Наименование}" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Name="phone" Text="{Binding Телефон}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Name="Priority" Text="{Binding Приоритет}"/>
+                        <TextBlock Grid.Column="2" Grid.RowSpan="2" Text="%"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             
-        </DataGrid>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-        <Button Content="Добавить" Name="AddBtn" Width="140" Click="AddBtn_Click"/>
-        <Button Content="Удалить" Name="DeleteBtn" Width="140" Click="DeleteBtn_Click"/>
-        </StackPanel>
+        </ListView>
     </Grid>
 </Page>

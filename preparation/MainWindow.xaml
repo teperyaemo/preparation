@@ -5,21 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:preparation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Попрыженок" Height="450" Width="800"
         MinHeight="450" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="592"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="374"/>
-        </Grid.RowDefinitions>
-        <StackPanel Background="Azure" Margin="0,0,0,-34">
-            <Button Content="Деталь"/>
-            <Button Content="Категория"/>
-            <Button Content="Характеристика"/>
-        </StackPanel>
-        <Frame Name="MainFrame" Grid.Column="1" Margin="0,0,0,-34"/>
+        <StackPanel Background="Azure"/>
+        <Frame Name="MainFrame" Grid.Column="1"/>
+        <Label Grid.Column="0"  Content="Агенты" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Image Source="/Resources/Попрыженок.png" VerticalAlignment="Top" Margin="0,37,0,0"/>
+
     </Grid>
 </Window>

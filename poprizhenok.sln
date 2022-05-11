@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "preparation", "preparation\preparation.csproj", "{A0CF04B6-6CDB-4BDA-86A4-17D5343DBE88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "poprizhenok", "preparation\poprizhenok.csproj", "{A0CF04B6-6CDB-4BDA-86A4-17D5343DBE88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
