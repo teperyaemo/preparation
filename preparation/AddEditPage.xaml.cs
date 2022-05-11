@@ -22,10 +22,10 @@ namespace preparation
     {
         private Agents _currentAgent = new Agents();
 
-        public AddEditPage(Agents selectedDetail)
+        public AddEditPage(Agents selectedAgent)
         {
-            if (selectedDetail != null)
-            _currentAgent = selectedDetail;    
+            if (selectedAgent != null)
+            _currentAgent = selectedAgent;    
             InitializeComponent();
             DataContext = _currentAgent;
         }

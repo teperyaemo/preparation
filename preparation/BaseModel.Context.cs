@@ -24,7 +24,6 @@ namespace preparation
                 _context = new poprizhenokEntities();
             return _context;
         }
-
         public poprizhenokEntities()
             : base("name=poprizhenokEntities")
         {

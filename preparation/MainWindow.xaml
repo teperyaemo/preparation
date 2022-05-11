@@ -12,9 +12,9 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="592"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="Azure"/>
+        <StackPanel Background="#43DCFE"/>
         <Frame Name="MainFrame" Grid.Column="1"/>
-        <Label Grid.Column="0"  Content="Агенты" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Name="Head" Grid.Column="0"  Content="Агенты" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <Image Source="/Resources/Попрыженок.png" VerticalAlignment="Top" Margin="0,37,0,0"/>
 
     </Grid>

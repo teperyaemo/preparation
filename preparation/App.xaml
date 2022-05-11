@@ -18,7 +18,6 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Margin" Value="10, 20"/>
         </Style>
     </Application.Resources>
 </Application>
