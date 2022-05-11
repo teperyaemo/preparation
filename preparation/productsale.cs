@@ -12,15 +12,14 @@ namespace preparation
     using System;
     using System.Collections.Generic;
     
-    public partial class Характеристика_детали
+    public partial class productsale
     {
-        public int Id { get; set; }
-        public int Id_детали { get; set; }
-        public int Id_характеристики { get; set; }
-        public Nullable<double> Значение { get; set; }
-        public string Ед__измерения { get; set; }
+        public int ИН_Продажи { get; set; }
+        public string Продукция { get; set; }
+        public Nullable<int> ИН_Агента { get; set; }
+        public Nullable<System.DateTime> Дата { get; set; }
+        public Nullable<int> Кол_во { get; set; }
     
-        public virtual Деталь Деталь { get; set; }
-        public virtual Характеристики Характеристики { get; set; }
+        public virtual Agents Agents { get; set; }
     }
 }

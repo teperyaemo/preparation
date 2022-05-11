@@ -12,18 +12,27 @@ namespace preparation
     using System;
     using System.Collections.Generic;
     
-    public partial class Категория
+    public partial class Agents
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Категория()
+        public Agents()
         {
-            this.Деталь = new HashSet<Деталь>();
+            this.productsale = new HashSet<productsale>();
         }
     
-        public int Id_категории { get; set; }
-        public string Название { get; set; }
+        public int ИН_Агента { get; set; }
+        public string Тип { get; set; }
+        public string Наименование { get; set; }
+        public string Почта { get; set; }
+        public string Телефон { get; set; }
+        public string Логотип { get; set; }
+        public string Юр__адрес { get; set; }
+        public Nullable<int> Приоритет { get; set; }
+        public string Директор { get; set; }
+        public string ИНН { get; set; }
+        public string КПП { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Деталь> Деталь { get; set; }
+        public virtual ICollection<productsale> productsale { get; set; }
     }
 }

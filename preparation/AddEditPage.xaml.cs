@@ -20,22 +20,21 @@ namespace preparation
     /// </summary>
     public partial class AddEditPage : Page
     {
-        private Деталь _currentDetail = new Деталь();
+        private Agents _currentAgent = new Agents();
 
-        public AddEditPage(Деталь selectedDetail)
+        public AddEditPage(Agents selectedDetail)
         {
-            if (selectedDetail != null) 
-            _currentDetail = selectedDetail;    
+            if (selectedDetail != null)
+            _currentAgent = selectedDetail;    
             InitializeComponent();
-            CategoryCB.ItemsSource = rusmetEntities1.GetContext().Категория.ToList();
-            DataContext = _currentDetail;
+            DataContext = _currentAgent;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(_currentDetail.Название))
-                errors.AppendLine("Введите Название");
+            if (string.IsNullOrWhiteSpace(_currentAgent.Наименование))
+                errors.AppendLine("Введите Наименование");
 
             if (errors.Length > 0)
             {
@@ -43,14 +42,14 @@ namespace preparation
                 return;           
             }
 
-            if (_currentDetail.Id_детали == 0)
+            if (_currentAgent.ИН_Агента == 0)
             {
-                rusmetEntities1.GetContext().Деталь.Add(_currentDetail);
+                poprizhenokEntities.GetContext().Agents.Add(_currentAgent);
             }
 
             try
             {
-                rusmetEntities1.GetContext().SaveChanges();
+                poprizhenokEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
                 Manager.MainFrame.GoBack();
             }

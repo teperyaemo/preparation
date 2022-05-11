@@ -13,19 +13,20 @@ namespace preparation
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class rusmetEntities1 : DbContext
+    public partial class poprizhenokEntities : DbContext
     {
-        private static rusmetEntities1 _context;
+        private static poprizhenokEntities _context;
 
-        public static rusmetEntities1 GetContext()
+        public static poprizhenokEntities GetContext()
         {
             if (_context == null)
 
-                _context = new rusmetEntities1();
+                _context = new poprizhenokEntities();
             return _context;
         }
-        public rusmetEntities1()
-            : base("name=rusmetEntities1")
+
+        public poprizhenokEntities()
+            : base("name=poprizhenokEntities")
         {
         }
     
@@ -34,12 +35,8 @@ namespace preparation
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Agents> Agents { get; set; }
+        public virtual DbSet<productsale> productsale { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Деталь> Деталь { get; set; }
-        public virtual DbSet<Журнал_изменений> Журнал_изменений { get; set; }
-        public virtual DbSet<Категория> Категория { get; set; }
-        public virtual DbSet<Фотография> Фотография { get; set; }
-        public virtual DbSet<Характеристика_детали> Характеристика_детали { get; set; }
-        public virtual DbSet<Характеристики> Характеристики { get; set; }
     }
 }

@@ -67,37 +67,25 @@
     <Compile Include="AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Agents.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="productsale.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Деталь.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Журнал_изменений.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Категория.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Фотография.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Характеристика_детали.cs">
-      <DependentUpon>BaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Характеристики.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="detailPage.xaml">
+    <Page Include="AgentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,8 +107,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="detailPage.xaml.cs">
-      <DependentUpon>detailPage.xaml</DependentUpon>
+    <Compile Include="AgentPage.xaml.cs">
+      <DependentUpon>AgentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

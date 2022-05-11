@@ -23,7 +23,7 @@ namespace preparation
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new detailPage());
+            MainFrame.Navigate(new AgentPage());
             Manager.MainFrame = MainFrame;
         }
 

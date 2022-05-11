@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace preparation
 {
     /// <summary>
-    /// Логика взаимодействия для detailPage.xaml
+    /// Логика взаимодействия для AgentPage.xaml
     /// </summary>
-    public partial class detailPage : Page
+    public partial class AgentPage : Page
     {
-        public detailPage()
+        public AgentPage()
         {
             InitializeComponent();
         }
@@ -32,17 +32,17 @@ namespace preparation
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var SelectedDetails = DetailDG.SelectedItems.Cast<Деталь>().ToList();
+            var SelectedDetails = DetailDG.SelectedItems.Cast<Agents>().ToList();
 
             if(MessageBox.Show("Вы уверены?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question)==MessageBoxResult.Yes)
             {
                 try
                 {
-                    rusmetEntities1.GetContext().Деталь.RemoveRange(SelectedDetails);
-                    rusmetEntities1.GetContext().SaveChanges();
+                    poprizhenokEntities.GetContext().Agents.RemoveRange(SelectedDetails);
+                    poprizhenokEntities.GetContext().SaveChanges();
                     MessageBox.Show("Всё заебись");
 
-                    DetailDG.ItemsSource = rusmetEntities1.GetContext().Деталь.ToList();
+                    DetailDG.ItemsSource = poprizhenokEntities.GetContext().Agents.ToList();
                 }
                 catch(Exception ex)
                 {
@@ -55,14 +55,14 @@ namespace preparation
         {
             if (Visibility == Visibility.Visible)
             {
-                rusmetEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DetailDG.ItemsSource = rusmetEntities1.GetContext().Деталь.ToList();
+                poprizhenokEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DetailDG.ItemsSource = poprizhenokEntities.GetContext().Agents.ToList();
             }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Деталь));
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agents));
         }
     }
 }

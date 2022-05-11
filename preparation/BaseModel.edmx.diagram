@@ -4,18 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d71f66f2e8dd4741a0f5d78d710bf3be" Name="Diagram1">
-        <EntityTypeShape EntityType="rusmetModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Деталь" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Журнал_изменений" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Категория" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Фотография" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Характеристика_детали" Width="2.125" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="rusmetModel.Характеристики" Width="2.375" PointX="2.125" PointY="7.25" IsExpanded="true" />
-        <AssociationConnector Association="rusmetModel.FK_Деталь_Категория" ManuallyRouted="false" />
-        <AssociationConnector Association="rusmetModel.FK_Фотография_Деталь" ManuallyRouted="false" />
-        <AssociationConnector Association="rusmetModel.FK_Характеристика_детали_Деталь" ManuallyRouted="false" />
-        <AssociationConnector Association="rusmetModel.FK_Характеристика_детали_Характеристики" ManuallyRouted="false" />
+      <Diagram DiagramId="f1dd6238125645269645bc218a858094" Name="Diagram1">
+        <EntityTypeShape EntityType="poprizhenokModel.Agents" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="poprizhenokModel.productsale" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="poprizhenokModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="poprizhenokModel.FK_productsale_Agents" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
